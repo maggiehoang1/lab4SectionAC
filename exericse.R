@@ -2,8 +2,10 @@
 # install.packages("dplyr")
 library(dplyr)
 
+setwd("/Users/maggiehoang/info201/lab4SectionAC")
 # Read in the NBA team data of the 2016-2017 season from the data directory  
 # into a variable called `team.data` using `read.csv`
+
 team.data <- read.csv("data/teams.csv", stringsAsFactors = FALSE)
 
 
@@ -15,17 +17,18 @@ View(team.data)
 
 
 # Add a column that gives the turnovers to steals ratio (TOV / STL) for each team
-
+team.data$turnovers <- length(team.data$TOV) / length(team.data$STL)
 
 # Sort the teams from lowest turnover/steal ratio to highest
-
+arrange(team.data, desc(turnovers))
 
 #Find the average BLK and STL for teams having a TOV greater than the average TOV of all teams
-
+av_tov <- mean(team.data$TOV)
+av_tov > mean(team.data$BLK)
 
 # Get the team that had the highest Total Rebounds (TRB) only with the columns 
 # Team and TRB  *using one line of code*
-
+arrange(team.data, desc(team.data$TRB))
 
 # Print only the name of the team that had the highest total rebounds
 # (that also happens to be the greatest team of all time)
@@ -35,13 +38,18 @@ View(team.data)
 
 # Read in the Pokemon data from the data directory  
 # into a variable called `pokemon` using `read.csv`. Remember to not read strings in as factors.
+pokemon <- read.csv("data/Pokemon.csv", stringsAsFactors = FALSE)
 
 # First, View() the data set to see what info you have to work with 
-
+View(pokemon)
 
 # Find all the Pokemon that are "Water" or "Ghost" Type 1 and have a speed higher than 50
 
 # Find the average HP, median HP, min HP and max HP for each of the type of generations
+mean(pokemon$HP)
+median(pokemon$HP)
+min(pokemon$HP)
+max(pokemon$HP)
 
 #FIND THE NUMBER OF POKEMONS THAT ARE LEGENDARY AND THE NUMBER OF POKEMONS THAT ARE NOT LEGENDARY 
 #THAT HAVE A HIGHER ATTACK THAN DEFENSE VALUE
